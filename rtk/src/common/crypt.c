@@ -167,7 +167,7 @@ char* generate_key2(unsigned char* packet, char* table, char* keyout, int fromcl
 	outbuffer[9] = 0;
 	return outbuffer;
 }*/
-void crypt(char* buff)
+void crypt_new(char* buff)
 {
 	unsigned int Group = 0;
 	unsigned int GroupCount = 0;

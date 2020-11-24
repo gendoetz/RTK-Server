@@ -187,7 +187,7 @@ int encrypt(int fd)
 		crypt2(WFIFOP(fd, 0), &(key));
 	}
 	else {
-		crypt(WFIFOP(fd, 0));
+		crypt_new(WFIFOP(fd, 0));
 	}
 	return (int)SWAP16(*(unsigned short*)WFIFOP(fd, 1)) + 3;
 }
@@ -204,7 +204,7 @@ int decrypt(int fd)
 		crypt2(RFIFOP(fd, 0), &(key));
 	}
 	else {
-		crypt(RFIFOP(fd, 0));
+		crypt_new(RFIFOP(fd, 0));
 	}
 }
 
@@ -11809,7 +11809,7 @@ int send_metafile(USER* sd, char* file) {
 	//printf("%s\n",file);
 	WFIFOW(sd->fd, 1) = SWAP16(len + 3);
 	set_packet_indexes(WFIFOP(sd->fd, 0));
-	crypt(WFIFOP(sd->fd, 0));
+	crypt_new(WFIFOP(sd->fd, 0));
 	WFIFOSET(sd->fd, len + 6 + 3);
 
 	free(cbuf);
@@ -11852,7 +11852,7 @@ int send_metalist(USER* sd) {
 
 	WFIFOW(sd->fd, 1) = SWAP16(len + 4);
 	set_packet_indexes(WFIFOP(sd->fd, 0));
-	crypt(WFIFOP(sd->fd, 0));
+	crypt_new(WFIFOP(sd->fd, 0));
 	WFIFOSET(sd->fd, len + 7 + 3);
 
 	return 0;

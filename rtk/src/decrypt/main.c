@@ -91,7 +91,7 @@ char refname[] = "invicta";
   internal function.
 */
 
-void crypt(char* buff)
+void crypt_new(char* buff)
 {
 	unsigned int Group = 0;
 	unsigned int GroupCount = 0;
